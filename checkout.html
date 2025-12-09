@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Secure checkout - Koty Cono" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍦</text></svg>"
+    />
+    <title>Checkout - Koty Cono</title>
+    <link rel="stylesheet" href="checkout.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="checkout-nav">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">🍦</span>
+          <span class="logo-text">KOTY CONO</span>
+        </a>
+        <div class="secure-badge">🔒 Secure Checkout</div>
+      </div>
+    </nav>
+
+    <!-- Progress Steps -->
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-step active" data-step="1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Cart</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Shipping</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="4">
+          <div class="step-circle">4</div>
+          <span class="step-label">Confirm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="checkout-container">
+      <!-- Step 1: Cart Review -->
+      <div class="checkout-step active" id="step-1">
+        <div class="step-content">
+          <h2>Review Your Cart</h2>
+          <div class="cart-items" id="checkout-cart-items">
+            <!-- Cart items will be populated by JavaScript -->
+          </div>
+          <div class="promo-code">
+            <input
+              type="text"
+              id="promo-input"
+              placeholder="Enter promo code"
+            />
+            <button class="btn-secondary" onclick="applyPromo()">Apply</button>
+          </div>
+        </div>
+        <div class="step-sidebar">
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+              <span>Subtotal:</span>
+              <span id="subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping:</span>
+              <span id="shipping">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Tax:</span>
+              <span id="tax">$0.00</span>
+            </div>
+            <div
+              class="summary-row discount-row"
+              id="discount-row"
+              style="display: none"
+            >
+              <span>Discount:</span>
+              <span id="discount">-$0.00</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total-row">
+              <span>Total:</span>
+              <span id="total">$0.00</span>
+            </div>
+            <button class="btn-primary" onclick="nextStep()">
+              Continue to Shipping
+            </button>
+            <a href="index.html" class="continue-shopping"
+              >← Continue Shopping</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Shipping Information -->
+      <div class="checkout-step" id="step-2">
+        <div class="step-content">
+          <h2>Shipping Information</h2>
+          <form class="checkout-form" id="shipping-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" required />
+            </div>
+            <div class="form-group">
+              <label for="address">Street Address *</label>
+              <input type="text" id="address" required />
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" required />
+              </div>
+              <div class="form-group">
+                <label for="state">State/Province *</label>
+                <input type="text" id="state" required />
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="zip">ZIP/Postal Code *</label>
+                <input type="text" id="zip" required />
+              </div>
+              <div class="form-group">
+                <label for="country">Country *</label>
+                <select id="country" required>
+                  <option value="">Select Country</option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="AU">Australia</option>
+                </select>
+              </div>
+            </div>
+            <div class="shipping-methods">
+              <h3>Shipping Method</h3>
+              <div class="shipping-option">
+                <input
+                  type="radio"
+                  id="standard"
+                  name="shipping"
+                  value="0"
+                  checked
+                  onchange="updateShipping()"
+                />
+                <label for="standard">
+                  <strong>Standard Shipping (5-7 days)</strong>
+                  <span>FREE</span>
+                </label>
+              </div>
+              <div class="shipping-option">
+                <input
+                  type="radio"
+                  id="express"
+                  name="shipping"
+                  value="9.99"
+                  onchange="updateShipping()"
+                />
+                <label for="express">
+                  <strong>Express Shipping (2-3 days)</strong>
+                  <span>$9.99</span>
+                </label>
+              </div>
+              <div class="shipping-option">
+                <input
+                  type="radio"
+                  id="overnight"
+                  name="shipping"
+                  value="24.99"
+                  onchange="updateShipping()"
+                />
+                <label for="overnight">
+                  <strong>Overnight Shipping (1 day)</strong>
+                  <span>$24.99</span>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="step-sidebar">
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+              <span>Subtotal:</span>
+              <span id="subtotal-2">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping:</span>
+              <span id="shipping-2">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Tax:</span>
+              <span id="tax-2">$0.00</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total-row">
+              <span>Total:</span>
+              <span id="total-2">$0.00</span>
+            </div>
+            <button class="btn-primary" onclick="nextStep()">
+              Continue to Payment
+            </button>
+            <button class="btn-secondary" onclick="prevStep()">
+              ← Back to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Payment Information -->
+      <div class="checkout-step" id="step-3">
+        <div class="step-content">
+          <h2>Payment Information</h2>
+          <form class="checkout-form" id="payment-form">
+            <div class="payment-methods">
+              <div
+                class="payment-option active"
+                onclick="selectPaymentMethod('card')"
+              >
+                <input
+                  type="radio"
+                  id="card"
+                  name="payment"
+                  value="card"
+                  checked
+                />
+                <label for="card"> 💳 Credit/Debit Card </label>
+              </div>
+              <div
+                class="payment-option"
+                onclick="selectPaymentMethod('paypal')"
+              >
+                <input type="radio" id="paypal" name="payment" value="paypal" />
+                <label for="paypal"> 🅿️ PayPal </label>
+              </div>
+            </div>
+
+            <div id="card-payment" class="payment-details">
+              <div class="form-group">
+                <label for="cardNumber">Card Number *</label>
+                <input
+                  type="text"
+                  id="cardNumber"
+                  placeholder="1234 5678 9012 3456"
+                  maxlength="19"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="cardName">Cardholder Name *</label>
+                <input type="text" id="cardName" required />
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="expiry">Expiry Date *</label>
+                  <input
+                    type="text"
+                    id="expiry"
+                    placeholder="MM/YY"
+                    maxlength="5"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cvv">CVV *</label>
+                  <input
+                    type="text"
+                    id="cvv"
+                    placeholder="123"
+                    maxlength="4"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="paypal-payment"
+              class="payment-details"
+              style="display: none"
+            >
+              <div class="paypal-notice">
+                <p>
+                  You will be redirected to PayPal to complete your purchase
+                  securely.
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <input type="checkbox" id="saveCard" />
+              <label for="saveCard">Save this card for future purchases</label>
+            </div>
+          </form>
+        </div>
+        <div class="step-sidebar">
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+              <span>Subtotal:</span>
+              <span id="subtotal-3">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping:</span>
+              <span id="shipping-3">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Tax:</span>
+              <span id="tax-3">$0.00</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total-row">
+              <span>Total:</span>
+              <span id="total-3">$0.00</span>
+            </div>
+            <button class="btn-primary" onclick="nextStep()">
+              Review Order
+            </button>
+            <button class="btn-secondary" onclick="prevStep()">
+              ← Back to Shipping
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Order Confirmation -->
+      <div class="checkout-step" id="step-4">
+        <div class="step-content full-width">
+          <h2>Review Your Order</h2>
+
+          <div class="confirmation-grid">
+            <div class="confirmation-section">
+              <h3>Shipping Address</h3>
+              <div class="confirmation-details" id="shipping-details">
+                <!-- Populated by JavaScript -->
+              </div>
+              <button class="btn-link" onclick="goToStep(2)">Edit</button>
+            </div>
+
+            <div class="confirmation-section">
+              <h3>Payment Method</h3>
+              <div class="confirmation-details" id="payment-details">
+                <!-- Populated by JavaScript -->
+              </div>
+              <button class="btn-link" onclick="goToStep(3)">Edit</button>
+            </div>
+          </div>
+
+          <div class="confirmation-section">
+            <h3>Order Items</h3>
+            <div class="order-items" id="confirmation-items">
+              <!-- Populated by JavaScript -->
+            </div>
+          </div>
+
+          <div class="confirmation-section">
+            <h3>Order Summary</h3>
+            <div class="final-summary">
+              <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal-4">$0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Shipping:</span>
+                <span id="shipping-4">$0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Tax:</span>
+                <span id="tax-4">$0.00</span>
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-row total-row">
+                <span>Total:</span>
+                <span id="total-4">$0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="terms-section">
+            <input type="checkbox" id="terms" required />
+            <label for="terms">
+              I agree to the
+              <a href="#" class="terms-link">Terms & Conditions</a> and
+              <a href="#" class="terms-link">Privacy Policy</a>
+            </label>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-secondary" onclick="prevStep()">
+              ← Back to Payment
+            </button>
+            <button class="btn-primary btn-large" onclick="placeOrder()">
+              Place Order 🎉
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      <div class="checkout-step" id="success-step" style="display: none">
+        <div class="success-content">
+          <div class="success-icon">✅</div>
+          <h1>Order Placed Successfully!</h1>
+          <p class="success-message">
+            Thank you for your order! Your order number is
+            <strong id="order-number"></strong>
+          </p>
+          <p class="success-details">
+            We've sent a confirmation email to
+            <strong id="customer-email"></strong>
+          </p>
+          <div class="success-actions">
+            <a href="index.html" class="btn-primary">Continue Shopping</a>
+            <button class="btn-secondary" onclick="window.print()">
+              Print Receipt
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="checkout.js"></script>
+  </body>
+</html>

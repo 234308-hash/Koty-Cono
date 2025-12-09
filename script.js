@@ -5,6 +5,7 @@ const Cart = {
     this.items.push({ name, price, img });
     this.render();
     this.updateCartCount();
+    this.saveToStorage();
     
     // Show cart sidebar when item is added
     toggleCart(true);
@@ -14,6 +15,7 @@ const Cart = {
     this.items.splice(index, 1);
     this.render();
     this.updateCartCount();
+    this.saveToStorage();
   },
 
   getTotal() {
@@ -77,13 +79,26 @@ const Cart = {
       return;
     }
 
-    alert(
-      `Checkout complete! Total: $${this.getTotal().toFixed(2)}\n\nThank you for your order! 🎉`
-    );
-    this.items = [];
-    this.render();
-    this.updateCartCount();
-    toggleCart(false);
+    // Save cart to localStorage for checkout page
+    localStorage.setItem("kotyCono_cart", JSON.stringify(this.items));
+    
+    // Redirect to checkout page
+    window.location.href = "checkout.html";
+  },
+
+  // Load cart from localStorage
+  loadFromStorage() {
+    const savedCart = localStorage.getItem("kotyCono_cart");
+    if (savedCart) {
+      this.items = JSON.parse(savedCart);
+      this.render();
+      this.updateCartCount();
+    }
+  },
+
+  // Save cart to localStorage
+  saveToStorage() {
+    localStorage.setItem("kotyCono_cart", JSON.stringify(this.items));
   },
 };
 
@@ -121,6 +136,7 @@ function toggleMobileMenu() {
 
 // Smooth scroll for anchor links
 document.addEventListener("DOMContentLoaded", () => {
+  Cart.loadFromStorage();
   Cart.render();
   Cart.updateCartCount();
 
