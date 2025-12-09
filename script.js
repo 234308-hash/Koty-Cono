@@ -125,11 +125,11 @@ function toggleCart(forceState) {
 
 // Toggle mobile menu
 function toggleMobileMenu() {
-  const navLinks = document.querySelector(".nav-links");
+  const navCenter = document.querySelector(".nav-center");
   const toggle = document.querySelector(".mobile-menu-toggle");
   
-  if (navLinks) {
-    navLinks.classList.toggle("active");
+  if (navCenter) {
+    navCenter.classList.toggle("active");
     toggle.classList.toggle("active");
   }
 }
@@ -157,8 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Close mobile menu if open
-        const navLinks = document.querySelector(".nav-links");
-        if (navLinks && navLinks.classList.contains("active")) {
+        const navCenter = document.querySelector(".nav-center");
+        if (navCenter && navCenter.classList.contains("active")) {
           toggleMobileMenu();
         }
       }
@@ -172,13 +172,54 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
 
-    if (currentScroll > 100) {
-      navbar.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
+    if (currentScroll > 50) {
+      navbar.classList.add("scrolled");
     } else {
-      navbar.style.boxShadow = "0 8px 24px rgba(17, 24, 39, 0.06)";
+      navbar.classList.remove("scrolled");
     }
 
     lastScroll = currentScroll;
   });
-});
 
+  // Active nav link on scroll
+  const sections = document.querySelectorAll("section[id]");
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (window.pageYOffset >= sectionTop - 200) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  });
+
+  // Scroll reveal animation observer
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+        // Optionally unobserve after revealing (animation plays once)
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all scroll-reveal elements
+  const scrollElements = document.querySelectorAll(
+    ".scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale"
+  );
+  scrollElements.forEach((el) => scrollObserver.observe(el));
+});
