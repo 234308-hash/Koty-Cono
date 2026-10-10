@@ -1,428 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Koty Cono Store - Premium natural slimming products for a healthier you"
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍦</text></svg>"
-    />
-    <title>Koty Cono - Natural Wellness & Slimming Solutions</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Ultra Modern Navigation -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="#home" class="logo">
-          <div class="logo-wrapper">
-            <span class="logo-icon" aria-hidden="true">🍦</span>
-            <div class="logo-text-wrapper">
-              <span class="logo-text">KOTY CONO</span>
-              <span class="logo-tagline">Wellness & Beauty</span>
-            </div>
-          </div>
-        </a>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#21130e"><meta name="description" content="Meet Koty Cono: low-fat ice cream, playful flavors and a whole lot of joy. Explore the collection and build your perfect cone.">
+<title>Koty Cono — Low Fat. Big Love.</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preload" as="image" href="assets/icecream-poster.png">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="premium.css">
+</head>
+<body>
+<div class="announcement">A little lighter. A lot of joy. <span>Free delivery on demo baskets over EGP 350 ✦</span></div>
+<header class="header" id="header">
+ <a class="logo" href="#home" aria-label="Koty Cono home">koty<span>cono<span class="logo-dot">✦</span></span></a>
+ <nav class="desktop-nav" aria-label="Main navigation"><a href="#shop">The flavors</a><a href="#story">Our little story</a><a href="#faq">Good to know</a></nav>
+ <div class="header-actions"><button class="icon-button" id="search-toggle" aria-label="Search products"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button><button id="wishlist-toggle" class="icon-button" aria-label="Show saved flavors"><svg viewBox="0 0 24 24"><path d="M12 20s-9-5.7-9-11.4C3 3.3 9.6 2 12 7c2.4-5 9-3.7 9 1.6C21 14.3 12 20 12 20Z"/></svg><span id="wish-count" class="mini-count" hidden>0</span></button><button id="cart-toggle" class="cart-button" aria-label="Open shopping cart"><svg viewBox="0 0 24 24"><path d="M5 7h14l2 14H3L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><span class="cart-label">Your bag</span><span class="cart-count" id="cart-count">0</span></button></div>
+</header>
 
-        <div class="nav-center">
-          <div class="nav-links">
-            <a href="#home" class="nav-link active">
-              <span class="link-text">Home</span>
-              <span class="link-dot"></span>
-            </a>
-            <a href="#about" class="nav-link">
-              <span class="link-text">About</span>
-              <span class="link-dot"></span>
-            </a>
-            <a href="#products" class="nav-link">
-              <span class="link-text">Products</span>
-              <span class="link-dot"></span>
-            </a>
-            <a href="#testimonials" class="nav-link">
-              <span class="link-text">Reviews</span>
-              <span class="link-dot"></span>
-            </a>
-            <a href="#contact" class="nav-link">
-              <span class="link-text">Contact</span>
-              <span class="link-dot"></span>
-            </a>
-          </div>
-        </div>
+<main>
+<section class="hero-track" id="home" aria-labelledby="hero-heading">
+ <div class="hero-sticky">
+ <div class="hero-bg-word" aria-hidden="true">KOTY CONO</div>
+ <div class="hero-copy"><div class="eyebrow"><i></i> YOUR NEW HAPPY LITTLE HABIT</div><h1 id="hero-heading">Low fat.<br><span>Big love.</span></h1><p>All the creamy, dreamy goodness.<br>Just a little lighter.</p><a class="button primary" href="#shop">Find your flavor <span>↗</span></a><div class="hero-scroll"><span class="scroll-line"></span><span>SCROLL TO MAKE SOME MAGIC</span></div></div>
+ <div class="cone-stage" id="cone-stage"><div class="halo"></div><span class="floating-pill pill-one" aria-hidden="true"></span><span class="floating-pill pill-two" aria-hidden="true"></span><span class="floating-pill pill-three" aria-hidden="true"></span><div class="round-badge"><span>LOW FAT</span><svg viewBox="0 0 24 24"><path d="m12 1 2.4 7.6L22 7l-5.8 5L22 18l-7.6-1.6L12 24l-2.4-7.6L2 18l5.8-6L2 7l7.6 1.6Z"/></svg><span>FULL JOY</span></div><div id="cone-anchor" aria-hidden="true"></div><div class="cone-shadow"></div><div class="flavor-label"><span>THE ORIGINAL</span><strong>Rainbow Vanilla</strong></div></div>
+ <div class="hero-chapters" aria-hidden="true"><span id="chapter-original" class="active"><b>01</b> THE ORIGINAL</span><span id="chapter-magic"><b>02</b> A LITTLE MAGIC</span><span id="chapter-joy"><b>03</b> FULL JOY</span></div>
+ <div class="hero-footer"><span>MADE FOR YOUR LITTLE HAPPY MOMENTS.</span><div class="progress-track"><span id="scroll-progress"></span></div><span id="scroll-percent">01 / 64</span></div>
+ </div>
+</section>
 
-        <div class="nav-actions">
-          <button class="search-btn" aria-label="Search">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-          </button>
-          <button
-            class="cart-toggle"
-            onclick="toggleCart()"
-            aria-label="Shopping Cart"
-          >
-            <svg
-              class="cart-icon"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path
-                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-              ></path>
-            </svg>
-            <span class="cart-count" id="cart-count">0</span>
-            <span class="cart-pulse"></span>
-          </button>
-        </div>
+<div class="ticker" aria-label="Low fat, full flavor"><div>LOW FAT <span>✦</span> FULL FLAVOR <span>✦</span> LITTLE HAPPY MOMENTS <span>✦</span> KOTY CONO <span>✦</span> LOW FAT <span>✦</span> FULL FLAVOR <span>✦</span> LITTLE HAPPY MOMENTS <span>✦</span> KOTY CONO <span>✦</span></div></div>
 
-        <button
-          class="mobile-menu-toggle"
-          onclick="toggleMobileMenu()"
-          aria-label="Menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
+<section class="shop section" id="shop" aria-labelledby="shop-heading">
+ <div class="section-heading"><div><div class="eyebrow">A FLAVOR FOR EVERY MOOD</div><h2 id="shop-heading">Pick your <em>happy.</em></h2></div><p>Classic cones, fruity cups, and something<br>to share. Your next favorite is right here.</p></div>
+ <div class="shop-tools"><div class="filters" role="group" aria-label="Filter products"><button class="filter active" data-filter="all" aria-pressed="true">All the goodness</button><button class="filter" data-filter="cones" aria-pressed="false">Cones</button><button class="filter" data-filter="cups" aria-pressed="false">Cups</button><button class="filter" data-filter="bundles" aria-pressed="false">Sharing boxes</button></div><div class="shop-right"><label class="search-field"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="product-search" type="search" placeholder="Find a flavor…" aria-label="Search flavors"></label><select id="sort" aria-label="Sort products"><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name: A–Z</option></select></div></div>
+ <div id="catalog-state" class="catalog-state" aria-live="polite"></div><div class="product-grid" id="product-grid"></div>
+ <p class="catalog-note">A first taste of the Koty Cono concept. This menu, its prices and product imagery are illustrative.</p>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <div class="hero-text">
-          <span class="hero-badge">🌿 100% Natural Ingredients</span>
-          <h1 class="hero-title">
-            Transform Your Body,<br />
-            <span class="gradient-text">Naturally & Deliciously</span>
-          </h1>
-          <p class="hero-description">
-            Premium wellness products crafted with nature's finest ingredients.
-            Experience effective slimming without compromising on taste or
-            health.
-          </p>
-          <div class="hero-cta">
-            <a href="#products" class="btn-primary">Explore Products</a>
-            <a href="#about" class="btn-secondary">Learn More</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat scroll-reveal stagger-1">
-              <strong>10K+</strong>
-              <span>Happy Customers</span>
-            </div>
-            <div class="stat scroll-reveal stagger-2">
-              <strong>100%</strong>
-              <span>Natural</span>
-            </div>
-            <div class="stat scroll-reveal stagger-3">
-              <strong>4.9★</strong>
-              <span>Rating</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-image">
-          <div class="hero-img-wrapper">
-            <div class="floating-badge badge-1">✨ Certified Organic</div>
-            <div class="floating-badge badge-2">💚 Vegan Friendly</div>
-            <div class="floating-badge badge-3">🔬 Lab Tested</div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="story" id="story" aria-labelledby="story-heading"><div class="story-art"><div class="story-circle"></div><img src="assets/pistachio.webp" alt="Pistachio soft-serve with chopped pistachios in a waffle cone" loading="lazy"><span class="story-sticker">LESS FAT.<br>MORE <em>YUM.</em></span></div><div class="story-copy"><div class="eyebrow">SAME SWEET FEELING. A LIGHTER LITTLE TWIST.</div><h2 id="story-heading">Good things<br>come in <em>cones.</em></h2><p>Koty Cono is built around a simple idea: the joy of ice cream, with a lighter recipe. Creamy textures, bright flavors and that first-bite smile — that's our kind of everyday treat.</p><div class="story-points"><div><span>01</span><h3>Low-fat at heart</h3><p>A lighter direction for the ice cream you love.</p></div><div><span>02</span><h3>Big on flavor</h3><p>From classic vanilla to fruity little favorites.</p></div><div><span>03</span><h3>Your happy moment</h3><p>A cone for you. A sharing box for your people.</p></div></div><a href="#shop" class="text-link">A little treat sounds good ↗</a></div></section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-header scroll-reveal">
-          <span class="section-tag">About Us</span>
-          <h2>Why Choose Koty Cono?</h2>
-          <p>
-            Dedicated to your wellness journey with premium natural products
-          </p>
-        </div>
-        <div class="about-grid">
-          <div class="about-card scroll-reveal stagger-1">
-            <div class="about-icon">🌱</div>
-            <h3>100% Natural</h3>
-            <p>
-              All our products are made from carefully selected natural
-              ingredients with no harmful additives.
-            </p>
-          </div>
-          <div class="about-card scroll-reveal stagger-2">
-            <div class="about-icon">🔬</div>
-            <h3>Scientifically Proven</h3>
-            <p>
-              Backed by research and tested in certified laboratories to ensure
-              maximum effectiveness.
-            </p>
-          </div>
-          <div class="about-card scroll-reveal stagger-3">
-            <div class="about-icon">💚</div>
-            <h3>Sustainable & Ethical</h3>
-            <p>
-              We care about the planet. Our products are eco-friendly and
-              ethically sourced.
-            </p>
-          </div>
-          <div class="about-card scroll-reveal stagger-4">
-            <div class="about-icon">⚡</div>
-            <h3>Fast Results</h3>
-            <p>
-              Experience noticeable results within weeks when combined with a
-              healthy lifestyle.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="bundle-banner"><div class="bundle-banner-copy"><div class="eyebrow">DOUBLE THE SCOOPS. DOUBLE THE SMILES.</div><h2>Better <em>together.</em></h2><p>Build a happy little moment for two with our Rainbow Duo.</p><button class="button primary" data-add="duo">Add the Rainbow Duo <span>↗</span></button></div><div class="duo-images"><img class="duo-one" src="assets/vanilla.webp" alt="Rainbow vanilla cone" loading="lazy"><img class="duo-two" src="assets/strawberry.webp" alt="Strawberry cone" loading="lazy"><span class="duo-price">EGP<br><strong>185</strong></span></div></section>
 
-    <!-- Featured Products Section -->
-    <section id="products" class="products-section">
-      <div class="container">
-        <div class="section-header scroll-reveal">
-          <span class="section-tag">Our Products</span>
-          <h2>Featured Wellness Solutions</h2>
-          <p>Carefully crafted formulas to support your health goals</p>
-        </div>
-        <div class="products-grid">
-          <article class="product-card scroll-reveal-scale stagger-1">
-            <div class="product-badge">Best Seller</div>
-            <div class="product-image">
-              <img src="imgs/B.png" alt="Burn Capsules" />
-            </div>
-            <div class="product-content">
-              <h3>Burn Capsules</h3>
-              <p class="product-description">
-                Advanced metabolism booster with green tea extract and natural
-                thermogenics
-              </p>
-              <div class="product-rating">
-                ⭐⭐⭐⭐⭐ <span>(127 reviews)</span>
-              </div>
-              <div class="product-footer">
-                <span class="price">$28.99</span>
-                <button
-                  class="btn-add-cart"
-                  onclick="Cart.add('Burn Capsules', 28.99, 'imgs/B.png')"
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </article>
+<section class="faq section" id="faq"><div class="section-heading"><div><div class="eyebrow">BEFORE YOUR FIRST BITE</div><h2>A few little <em>answers.</em></h2></div></div><div class="faq-grid"><details open><summary>What makes Koty Cono different?<span>+</span></summary><p>Our concept puts low-fat ice cream at the center, with playful flavors and creamy textures. Final nutrition and ingredients will be listed on the product packaging before live sales.</p></details><details><summary>Can I customize my cone?<span>+</span></summary><p>Absolutely. Open a flavor to choose a regular or large size and pick an extra topping. Your choices travel with the item in your bag.</p></details><details><summary>Which payment methods are available?<span>+</span></summary><p>This store currently runs a clearly labeled demo checkout. You can preview cash on delivery, cards and mobile wallets. No payment is collected and no delivery is arranged. Online payments will be available after the brand's payment account is connected.</p></details><details><summary>How does delivery work?<span>+</span></summary><p>The demo calculates a delivery fee by city and gives free delivery on baskets of EGP 350 or more. Live delivery areas and timings will be confirmed before real ordering begins.</p></details><details><summary>What about allergens?<span>+</span></summary><p>Our sample dairy flavors contain milk; waffle cones contain wheat. Pistachio and nut toppings contain nuts. Check each product's ingredient and allergen information. Production cross-contact information must be confirmed for the final menu.</p></details><details><summary>Can I save my favorites?<span>+</span></summary><p>Tap a heart on any flavor. Your saved flavors and bag stay on this browser, so you can come back to your happy little shortlist.</p></details></div></section>
+</main>
 
-          <article class="product-card scroll-reveal-scale stagger-2">
-            <div class="product-badge">Popular</div>
-            <div class="product-image">
-              <img src="imgs/D.png" alt="Detox Tea" />
-            </div>
-            <div class="product-content">
-              <h3>Detox Tea</h3>
-              <p class="product-description">
-                Organic herbal blend that cleanses and rejuvenates your body
-                naturally
-              </p>
-              <div class="product-rating">
-                ⭐⭐⭐⭐⭐ <span>(94 reviews)</span>
-              </div>
-              <div class="product-footer">
-                <span class="price">$24.99</span>
-                <button
-                  class="btn-add-cart"
-                  onclick="Cart.add('Detox Tea', 24.99, 'imgs/D.png')"
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </article>
+<footer class="footer"><div class="footer-top"><a class="logo footer-logo" href="#home">koty<span>cono<span class="logo-dot">✦</span></span></a><h2>A little lighter.<br>A lot <em>happier.</em></h2><a class="button light" href="#shop">Treat yourself ↗</a></div><div class="footer-bottom"><span>© <span id="year"></span> Koty Cono. Low fat, full joy.</span><div><button data-policy="delivery">Delivery</button><button data-policy="privacy">Privacy</button><button data-policy="terms">Terms</button></div><span class="payment-icons">VISA <span>●●</span> WALLET · CASH</span></div></footer>
 
-          <article class="product-card scroll-reveal-scale stagger-3">
-            <div class="product-badge">New</div>
-            <div class="product-image">
-              <img src="imgs/G.png" alt="Trim Gummies" />
-            </div>
-            <div class="product-content">
-              <h3>Trim Gummies</h3>
-              <p class="product-description">
-                Delicious apple cider vinegar gummies for weight management and
-                digestion
-              </p>
-              <div class="product-rating">
-                ⭐⭐⭐⭐⭐ <span>(203 reviews)</span>
-              </div>
-              <div class="product-footer">
-                <span class="price">$34.99</span>
-                <button
-                  class="btn-add-cart"
-                  onclick="Cart.add('Trim Gummies', 34.99, 'imgs/G.png')"
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+<dialog class="drawer" id="cart-dialog" aria-labelledby="cart-title"><div class="drawer-head"><div><span class="eyebrow">YOUR LITTLE HAPPY HAUL</span><h2 id="cart-title">Your bag <span id="drawer-count">0</span></h2></div><button class="close-button" data-close="cart-dialog" aria-label="Close shopping cart">×</button></div><div class="cart-body" id="cart-items"></div><div class="cart-bottom" id="cart-bottom"><div class="shipping-message" id="shipping-message"></div><div class="shipping-bar"><span id="shipping-bar-fill"></span></div><form id="promo-form" class="promo-form"><input id="promo" placeholder="Discount code" aria-label="Discount code"><button type="submit">Apply</button></form><p id="promo-message" class="field-message" aria-live="polite"></p><div id="cart-totals"></div><button class="button primary wide" id="checkout-open">Checkout <span>↗</span></button><p class="small-note">Demo checkout · no payment is collected</p></div></dialog>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-      <div class="container">
-        <div class="section-header scroll-reveal">
-          <span class="section-tag">Testimonials</span>
-          <h2>What Our Customers Say</h2>
-          <p>Real stories from real people</p>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card scroll-reveal-left stagger-1">
-            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-            <p class="testimonial-text">
-              "I've been using Burn Capsules for 3 months and lost 15 pounds!
-              The best part is I feel energized all day."
-            </p>
-            <div class="testimonial-author">
-              <strong>Sarah M.</strong>
-              <span>Verified Buyer</span>
-            </div>
-          </div>
-          <div class="testimonial-card scroll-reveal stagger-2">
-            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-            <p class="testimonial-text">
-              "The Detox Tea tastes amazing and really helps with bloating. I
-              drink it every morning!"
-            </p>
-            <div class="testimonial-author">
-              <strong>Mike R.</strong>
-              <span>Verified Buyer</span>
-            </div>
-          </div>
-          <div class="testimonial-card scroll-reveal-right stagger-3">
-            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-            <p class="testimonial-text">
-              "Trim Gummies are a game changer! They're delicious and I've
-              noticed a real difference in my appetite control."
-            </p>
-            <div class="testimonial-author">
-              <strong>Jessica L.</strong>
-              <span>Verified Buyer</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<dialog class="product-dialog modal" id="product-dialog" aria-labelledby="detail-title"><button class="close-button" data-close="product-dialog" aria-label="Close product details">×</button><div id="product-detail"></div></dialog>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="container">
-        <div class="cta-content scroll-reveal-scale">
-          <h2>Ready to Start Your Wellness Journey?</h2>
-          <p>
-            Join thousands of satisfied customers achieving their health goals
-            naturally
-          </p>
-          <a href="#products" class="btn-primary">Shop Now</a>
-        </div>
-      </div>
-    </section>
+<dialog class="checkout-dialog modal" id="checkout-dialog" aria-labelledby="checkout-title"><button class="close-button" data-close="checkout-dialog" aria-label="Close checkout">×</button><div class="checkout-header"><div class="eyebrow">ONE STEP CLOSER TO HAPPY</div><h2 id="checkout-title">The finishing <em>touch.</em></h2><div class="demo-notice"><strong>Demo checkout.</strong> No money will be charged and no delivery will be arranged.</div></div><div class="checkout-layout"><form id="checkout-form"><h3>1. Your details</h3><div class="field-row"><label>Full name<input name="name" autocomplete="name" minlength="2" maxlength="80" required placeholder="Your name"></label><label>Mobile number<input name="phone" autocomplete="tel" type="tel" required placeholder="010 1234 5678"></label></div><label>Email <small>(optional)</small><input name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com"></label><h3>2. Where's the happy going?</h3><div class="field-row"><label>City<select name="city" id="checkout-city"><option value="Cairo">Cairo</option><option value="Giza">Giza</option><option value="Alexandria">Alexandria</option><option value="Mansoura">Mansoura</option></select></label><label>Area<input name="area" autocomplete="address-level3" required maxlength="100" placeholder="Neighborhood / area"></label></div><label>Street & building<input name="address" autocomplete="street-address" required minlength="5" maxlength="200" placeholder="Street, building, floor and apartment"></label><label>Delivery note <small>(optional)</small><textarea name="note" rows="2" maxlength="300" placeholder="Anything we should know?"></textarea></label><h3>3. Payment method</h3><div class="payment-methods"><label class="payment-method"><input type="radio" name="payment" value="cash" checked><span><strong>Cash on delivery</strong><small>Preview the cash checkout flow</small></span><span class="method-icon">CASH</span></label><label class="payment-method"><input type="radio" name="payment" value="card"><span><strong>Credit / debit card</strong><small>Visa & Mastercard · demo selection</small></span><span class="method-icon">VISA</span></label><label class="payment-method"><input type="radio" name="payment" value="wallet"><span><strong>Mobile wallet</strong><small>Egyptian mobile wallets · demo selection</small></span><span class="method-icon">▣</span></label></div><p id="payment-note" class="payment-note">This is a demo order. No delivery or payment will occur.</p><label class="checkbox-label"><input type="checkbox" name="agreement" required><span>I understand this is a demo checkout, with no payment or delivery.</span></label><p id="checkout-error" class="error-message" role="alert"></p><button type="submit" class="button primary wide">Place demo order <span>↗</span></button></form><aside class="order-summary"><h3>Your happy haul</h3><div id="checkout-items"></div><div id="checkout-totals"></div><div class="summary-note">Your choices are saved only on this browser. Never enter card details — this demo does not request or process them.</div></aside></div></dialog>
 
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-column">
-            <div class="logo footer-logo">
-              <span class="logo-icon">🍦</span>
-              <span class="logo-text">KOTY CONO</span>
-            </div>
-            <p class="footer-description">
-              Premium natural wellness products for a healthier, happier you.
-            </p>
-            <div class="social-links">
-              <a href="#" aria-label="Facebook">📘</a>
-              <a href="#" aria-label="Instagram">📷</a>
-              <a href="#" aria-label="Twitter">🐦</a>
-              <a href="#" aria-label="YouTube">📺</a>
-            </div>
-          </div>
-          <div class="footer-column">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#products">Products</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>Support</h4>
-            <ul>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Shipping Info</a></li>
-              <li><a href="#">Returns</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>Contact Us</h4>
-            <ul>
-              <li>📧 hello@kotycono.com</li>
-              <li>📞 1-800-KOTY-CONO</li>
-              <li>📍 123 Wellness Ave, Health City</li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 Koty Cono. All rights reserved.</p>
-          <p>Made with 💚 for your wellness</p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Shopping Cart Sidebar -->
-    <aside class="cart-sidebar" id="cart-sidebar">
-      <div class="cart-header">
-        <h3>Your Cart</h3>
-        <button
-          class="cart-close"
-          onclick="toggleCart()"
-          aria-label="Close cart"
-        >
-          ✕
-        </button>
-      </div>
-      <div id="cart-items" class="cart-items"></div>
-      <div class="cart-total">
-        <span>Total:</span>
-        <span id="cart-total">$0.00</span>
-      </div>
-      <button class="checkout-btn" onclick="Cart.checkout()">
-        Proceed to Checkout
-      </button>
-      <a href="#products" class="continue-shopping" onclick="toggleCart()"
-        >Continue Shopping</a
-      >
-    </aside>
-    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
-
-    <script src="script.js"></script>
-  </body>
+<dialog class="modal receipt-dialog" id="receipt-dialog" aria-labelledby="receipt-title"><button class="close-button" data-close="receipt-dialog" aria-label="Close order confirmation">×</button><div id="receipt"></div></dialog>
+<dialog class="modal policy-dialog" id="policy-dialog" aria-labelledby="policy-title"><button class="close-button" data-close="policy-dialog" aria-label="Close information">×</button><div id="policy-content"></div></dialog>
+<div class="site-cone" id="site-cone" aria-hidden="true"><div class="motion-glow"></div><img id="cone-poster" src="assets/icecream-poster.png" alt=""><canvas id="hero-cone" width="640" height="960"></canvas><div class="motion-shadow"></div><div class="motion-caption"><span>KOTY CONO</span><strong>A little swirl of joy.</strong><div class="motion-progress"><i id="journey-progress"></i></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="assets/cone-motion.js"></script><script src="store.js"></script><script src="app.js"></script>
+</body>
 </html>
