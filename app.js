@@ -35,8 +35,8 @@ function renderCatalog(){
  $('#wish-count').textContent=wishlist.size;$('#wish-count').hidden=!wishlist.size;
  $('#wishlist-toggle').setAttribute('aria-pressed',savedOnly);
 }
-function persistCart(){save('koty-cart-v1',cart);save('koty-coupon-v1',coupon);renderCart();renderCheckoutSummary()}
-function addItem(id,options){const before=S.calculate(cart).count;cart=S.add(cart,id,options);persistCart();if(S.calculate(cart).count===before)toast('A little limit: 10 of each flavor combination.');else toast(`${S.find(id).name} is in your happy little bag.`)}
+function persistCart(){document.dispatchEvent(new CustomEvent('koty:cartchange'));save('koty-cart-v1',cart);save('koty-coupon-v1',coupon);renderCart();renderCheckoutSummary()}
+function addItem(id,options){const before=S.calculate(cart).count;cart=S.add(cart,id,options);persistCart();if(S.calculate(cart).count===before)toast('A little limit: 10 of each flavor combination.');else {toast(`${S.find(id).name} is in your happy little bag.`);document.dispatchEvent(new CustomEvent('koty:added',{detail:{id}}));}}
 function totalMarkup(t){return `<div class="total-row muted"><span>Subtotal</span><span>${money(t.subtotal)}</span></div>${t.discount?`<div class="total-row discount"><span>KOTY10 · 10% off</span><span>−${money(t.discount)}</span></div>`:''}<div class="total-row muted"><span>Delivery${t.delivery?'':' · on us'}</span><span>${t.delivery?money(t.delivery):'Free'}</span></div><div class="total-row total"><span>Total</span><span>${money(t.total)}</span></div>`}
 function itemOptions(line){const p=S.find(line.id);return p.category==='bundles'?'Sharing box · as pictured':`${S.sizes[line.size].label} · ${S.toppings[line.topping].label}`}
 function renderCart(){
@@ -112,45 +112,7 @@ const policies={
 $$('[data-policy]').forEach(b=>b.onclick=()=>{const p=policies[b.dataset.policy];$('#policy-content').innerHTML=`<div class="eyebrow">GOOD TO KNOW</div><h2 id="policy-title">${esc(p.title)}</h2><p>${esc(p.text)}</p>`;openDialog('policy-dialog')});
 $('#year').textContent=new Date().getFullYear();renderCatalog();renderCart();renderCheckoutSummary();
 
-// One advertising actor follows the entire document; commerce stays independent.
-const track=$('#home'),actor=$('#site-cone'),anchor=$('#cone-anchor'),reducedQuery=matchMedia('(prefers-reduced-motion: reduce)');
-let sprite=null,spriteReady=false,desired=.04,current=.04,lastTime=0,raf=0,visible=true;
-let layout={x:0,y:0,w:0,dock:0};
-const clamp=x=>Math.max(0,Math.min(1,x)),ease=x=>{x=clamp(x);return x*x*(3-2*x)},mix=(a,b,p)=>a+(b-a)*p;
-function updateScroll(){
- const vh=innerHeight,vw=document.documentElement.clientWidth,header=$('#header').offsetHeight;
- const max=Math.max(1,document.documentElement.scrollHeight-vh),global=clamp(scrollY/max);
- const heroDistance=Math.max(1,track.offsetHeight-$('.hero-sticky').offsetHeight),hero=clamp((scrollY-track.offsetTop+header)/heroDistance);
- const rect=anchor.getBoundingClientRect(),dock=reducedQuery.matches?0:ease((scrollY-(track.offsetTop+track.offsetHeight-vh)) / Math.max(1,vh*.65));
- const small=vw<=760,railW=small?66:vw<=1000?104:190;
- const w=mix(rect.width,railW,dock),x=mix(rect.left+rect.width/2,vw-(small?40:vw<=1000?67:116),dock);
- const y=mix(rect.top+rect.height/2,header+(vh-header)*.48,dock)+(reducedQuery.matches?scrollY:0);
- layout={x,y,w,dock};actor.style.width=w+'px';actor.style.height=w*1.5+'px';actor.style.left=x+'px';actor.style.top=y+'px';actor.style.setProperty('--dock',dock.toFixed(3));
- actor.classList.toggle('docked',dock>.98);actor.classList.toggle('hero-active',dock<.01);
- desired=hero<1?.04+hero*.91:.95+Math.max(0,scrollY-(track.offsetTop-header+heroDistance))/Math.max(1500,vh*2.2);
- const creamSurfaces=[$('#shop'),$('.bundle-banner')];actor.classList.toggle('on-cream',creamSurfaces.some(el=>{const r=el.getBoundingClientRect();return y>=r.top&&y<=r.bottom}));
- const chapter=hero<.2?'original':hero<.72?'magic':'joy';['original','magic','joy'].forEach(id=>$('#chapter-'+id).classList.toggle('active',id===chapter));
- document.documentElement.style.setProperty('--scroll',hero.toFixed(4));$('#scroll-progress').style.width=global*100+'%';$('#journey-progress').style.width=global*100+'%';
- $('#scroll-percent').textContent=Math.round(global*100).toString().padStart(2,'0')+' / 100';
- if(reducedQuery.matches){current=desired;if(spriteReady)sprite.draw(current,0,true);}else startMotion();
-}
-function tick(time){raf=0;if(!visible||!spriteReady||reducedQuery.matches)return;if(lastTime&&time-lastTime<33){raf=requestAnimationFrame(tick);return;}const dt=Math.min(64,time-(lastTime||time));lastTime=time;current=mix(current,desired,1-Math.exp(-dt/95));sprite.draw(current,time/1400);raf=requestAnimationFrame(tick);}
-function startMotion(){if(!raf&&visible&&spriteReady&&!reducedQuery.matches){lastTime=0;raf=requestAnimationFrame(tick)}}
-if(typeof window.KotyConeMotion==='function'){
- sprite=new KotyConeMotion($('#hero-cone'));
- sprite.ready.then(()=>{spriteReady=true;actor.classList.add('ready');updateScroll();}).catch(()=>{actor.classList.remove('ready');});
-}
-let scrollQueued=false;function queueScroll(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(()=>{scrollQueued=false;updateScroll()})}}
-addEventListener('scroll',queueScroll,{passive:true});addEventListener('resize',queueScroll);reducedQuery.addEventListener('change',()=>{cancelAnimationFrame(raf);raf=0;updateScroll()});
-document.addEventListener('visibilitychange',()=>{visible=!document.hidden;if(!visible){cancelAnimationFrame(raf);raf=0;}else{updateScroll();startMotion()}});
-if(typeof ResizeObserver==='function')new ResizeObserver(queueScroll).observe(document.querySelector('main'));
-// Gentle cursor parallax and one-time section entrances.
-addEventListener('pointermove',e=>{if(reducedQuery.matches||layout.dock>.95)return;sprite?.setPointer((e.clientX/innerWidth-.5)*2,(e.clientY/innerHeight-.5)*2)},{passive:true});
-document.documentElement.addEventListener('pointerleave',()=>sprite?.setPointer(0,0));
-if(typeof IntersectionObserver==='function'){
- document.documentElement.classList.add('reveal-ready');const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{rootMargin:'80px',threshold:.05});$$('.section-heading').forEach(el=>observer.observe(el));
-}
-updateScroll();
-// Expose only a small diagnostic interface for verification; no customer details.
-window.kotyDiagnostics={getCart:()=>cart.map(x=>({...x})),getTotals:()=>S.calculate(cart,{city:$('#checkout-city').value,coupon}),getSpriteFrame:()=>sprite?.frame??null,getMotion:()=>({progress:current,...layout,ready:spriteReady})};
+// Commerce has no dependency on rendering, assets, or the introduction timeline.
+window.KotyCommerce={addItem,openDetail,openCart:()=>{renderCart();openDialog('cart-dialog')}};
+window.kotyDiagnostics={getCart:()=>cart.map(x=>({...x})),getTotals:()=>S.calculate(cart,{city:$('#checkout-city').value,coupon})};
 })();

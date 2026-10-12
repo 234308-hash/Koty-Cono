@@ -1,0 +1,1 @@
+{"name":"koty-cono-verification","private":true,"scripts":{"test":"node shop-check.cjs && node scene-check.mjs"},"devDependencies":{"jsdom":"26.1.0"}}

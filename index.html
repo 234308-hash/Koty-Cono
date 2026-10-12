@@ -3,34 +3,44 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#21130e"><meta name="description" content="Meet Koty Cono: low-fat ice cream, playful flavors and a whole lot of joy. Explore the collection and build your perfect cone.">
-<title>Koty Cono — Low Fat. Big Love.</title>
+<title>Koty Cono — Low Fat. Full Joy.</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preload" as="image" href="assets/icecream-poster.png">
-<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="premium.css">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="cinematic.css">
 </head>
 <body>
-<div class="announcement">A little lighter. A lot of joy. <span>Free delivery on demo baskets over EGP 350 ✦</span></div>
+<a class="skip-link" href="#shop">Skip to shop</a>
 <header class="header" id="header">
  <a class="logo" href="#home" aria-label="Koty Cono home">koty<span>cono<span class="logo-dot">✦</span></span></a>
- <nav class="desktop-nav" aria-label="Main navigation"><a href="#shop">The flavors</a><a href="#story">Our little story</a><a href="#faq">Good to know</a></nav>
+ <nav class="desktop-nav" aria-label="Main navigation"><a href="#home" class="active">Home</a><a href="#shop">Shop</a><a href="#flavors">Flavors</a><a href="#story">About</a></nav><button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
  <div class="header-actions"><button class="icon-button" id="search-toggle" aria-label="Search products"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button><button id="wishlist-toggle" class="icon-button" aria-label="Show saved flavors"><svg viewBox="0 0 24 24"><path d="M12 20s-9-5.7-9-11.4C3 3.3 9.6 2 12 7c2.4-5 9-3.7 9 1.6C21 14.3 12 20 12 20Z"/></svg><span id="wish-count" class="mini-count" hidden>0</span></button><button id="cart-toggle" class="cart-button" aria-label="Open shopping cart"><svg viewBox="0 0 24 24"><path d="M5 7h14l2 14H3L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><span class="cart-label">Your bag</span><span class="cart-count" id="cart-count">0</span></button></div>
 </header>
 
+<nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden><a href="#home">Home</a><a href="#shop">Shop</a><a href="#flavors">Flavors</a><a href="#story">About</a><button id="mobile-cart">Your bag ↗</button></nav>
+<div id="cinema-layer" aria-hidden="true"><div class="scene-halo"></div><img id="scene-poster" src="assets/icecream-poster.png" alt="" fetchpriority="high"><canvas id="cinema-canvas"></canvas><div class="scene-floor"></div></div>
+<nav class="scene-nav" aria-label="Section navigation"><a href="#home" class="active"><span>01</span>Home</a><a href="#flavors"><span>02</span>Flavors</a><a href="#shop"><span>03</span>Shop</a><a href="#story"><span>04</span>About</a></nav>
 <main>
 <section class="hero-track" id="home" aria-labelledby="hero-heading">
  <div class="hero-sticky">
- <div class="hero-bg-word" aria-hidden="true">KOTY CONO</div>
- <div class="hero-copy"><div class="eyebrow"><i></i> YOUR NEW HAPPY LITTLE HABIT</div><h1 id="hero-heading">Low fat.<br><span>Big love.</span></h1><p>All the creamy, dreamy goodness.<br>Just a little lighter.</p><a class="button primary" href="#shop">Find your flavor <span>↗</span></a><div class="hero-scroll"><span class="scroll-line"></span><span>SCROLL TO MAKE SOME MAGIC</span></div></div>
- <div class="cone-stage" id="cone-stage"><div class="halo"></div><span class="floating-pill pill-one" aria-hidden="true"></span><span class="floating-pill pill-two" aria-hidden="true"></span><span class="floating-pill pill-three" aria-hidden="true"></span><div class="round-badge"><span>LOW FAT</span><svg viewBox="0 0 24 24"><path d="m12 1 2.4 7.6L22 7l-5.8 5L22 18l-7.6-1.6L12 24l-2.4-7.6L2 18l5.8-6L2 7l7.6 1.6Z"/></svg><span>FULL JOY</span></div><div id="cone-anchor" aria-hidden="true"></div><div class="cone-shadow"></div><div class="flavor-label"><span>THE ORIGINAL</span><strong>Rainbow Vanilla</strong></div></div>
- <div class="hero-chapters" aria-hidden="true"><span id="chapter-original" class="active"><b>01</b> THE ORIGINAL</span><span id="chapter-magic"><b>02</b> A LITTLE MAGIC</span><span id="chapter-joy"><b>03</b> FULL JOY</span></div>
- <div class="hero-footer"><span>MADE FOR YOUR LITTLE HAPPY MOMENTS.</span><div class="progress-track"><span id="scroll-progress"></span></div><span id="scroll-percent">01 / 64</span></div>
+  <div class="hero-background-label" aria-hidden="true">a little swirl of joy</div>
+  <div class="hero-copy"><div class="eyebrow"><span class="fine-line"></span> THE ORIGINAL, REIMAGINED</div><h1 id="hero-heading">KOTY<br><em>CONO</em><span class="heading-star" aria-hidden="true">✳</span></h1><h2>Low fat. <em>Full joy.</em></h2><p>Silky swirls. Golden waffle cones.<br>All the goodness, a little lighter.</p><a href="#shop" class="button primary">SHOP NOW <span>↗</span></a></div>
+  <div class="hero-product-label"><span>01 / THE ORIGINAL</span><strong>Rainbow Vanilla</strong><span>EGP 95 · REGULAR CONE</span></div>
+  <div class="hero-footer"><button id="replay-intro" aria-label="Replay the cinematic introduction"><span aria-hidden="true">↻</span> REPLAY THE MAGIC</button><a href="#flavors">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a><span>LOW FAT / HIGH SPIRITS</span></div>
+  <button id="skip-intro" class="skip-intro" hidden>Skip animation ↗</button>
+  <div class="intro-caption" id="intro-caption" aria-hidden="true"><span>A LITTLE LIGHTER.</span><strong>A world of <em>flavor.</em></strong></div>
  </div>
 </section>
-
-<div class="ticker" aria-label="Low fat, full flavor"><div>LOW FAT <span>✦</span> FULL FLAVOR <span>✦</span> LITTLE HAPPY MOMENTS <span>✦</span> KOTY CONO <span>✦</span> LOW FAT <span>✦</span> FULL FLAVOR <span>✦</span> LITTLE HAPPY MOMENTS <span>✦</span> KOTY CONO <span>✦</span></div></div>
-
+<section class="flavors-section" id="flavors" aria-labelledby="flavors-heading">
+ <div class="flavor-sticky">
+  <div class="section-topline"><span>THE FLAVOR ATELIER</span><span>01 — 06</span></div>
+  <div class="flavor-copy"><div class="eyebrow" id="flavor-tag">THE ORIGINAL</div><h2 id="flavors-heading">Six flavors.<br><em>Infinite joy.</em></h2><div class="flavor-detail" aria-live="polite" aria-atomic="true"><span class="flavor-number" id="flavor-number">01 / 06</span><h3 id="flavor-title">Rainbow Vanilla</h3><p id="flavor-description">Silky vanilla, a crisp waffle cone and a joyful shower of rainbow sprinkles.</p></div><div class="showcase-options"><label>YOUR SIZE<select id="showcase-size" aria-label="Choose showcase product size"><option value="regular">Regular</option><option value="large">Large + EGP 25</option></select></label><label>FINISHING TOUCH<select id="showcase-topping" aria-label="Choose showcase product topping"><option value="none">As pictured</option><option value="sprinkles">Extra sprinkles + EGP 10</option><option value="chocolate">Chocolate drizzle + EGP 15</option><option value="nuts">Crushed nuts + EGP 20</option></select></label></div><div class="showcase-buy"><strong id="flavor-price">EGP 95</strong><button id="showcase-add" class="button primary">ADD TO BAG <span>+</span></button><button id="showcase-customize" class="showcase-customize" data-detail="vanilla">Details & allergens ↗</button></div></div>
+  <div class="flavor-selector" role="group" aria-label="Choose an ice cream flavor"><button data-flavor="vanilla" aria-pressed="true" class="active"><span style="--swatch:#efe1bc"></span>Vanilla</button><button data-flavor="chocolate" aria-pressed="false"><span style="--swatch:#87513a"></span>Chocolate</button><button data-flavor="strawberry" aria-pressed="false"><span style="--swatch:#d8838c"></span>Strawberry</button><button data-flavor="pistachio" aria-pressed="false"><span style="--swatch:#a8b16c"></span>Pistachio</button><button data-flavor="mango" aria-pressed="false"><span style="--swatch:#e8ac42"></span>Mango</button><button data-flavor="berry" aria-pressed="false"><span style="--swatch:#ac617d"></span>Berry</button></div>
+  <div class="flavor-drag-note" aria-hidden="true">SELECT A FLAVOR. WATCH THE MAGIC.</div>
+ </div>
+</section>
+<div class="ticker" aria-label="Low fat, full flavor"><div>LOW FAT <span>✳</span> FULL JOY <span>✳</span> KOTY CONO <span>✳</span> LITTLE HAPPY MOMENTS <span>✳</span> LOW FAT <span>✳</span> FULL JOY <span>✳</span> KOTY CONO <span>✳</span> LITTLE HAPPY MOMENTS <span>✳</span></div></div>
 <section class="shop section" id="shop" aria-labelledby="shop-heading">
- <div class="section-heading"><div><div class="eyebrow">A FLAVOR FOR EVERY MOOD</div><h2 id="shop-heading">Pick your <em>happy.</em></h2></div><p>Classic cones, fruity cups, and something<br>to share. Your next favorite is right here.</p></div>
+ <div class="section-heading"><div><div class="eyebrow">A FLAVOR FOR EVERY MOOD</div><h2 id="shop-heading">Your next<br><em>sweet obsession.</em></h2></div><p>Classic cones, fruity cups, and something<br>to share. Your next favorite is right here.</p></div>
  <div class="shop-tools"><div class="filters" role="group" aria-label="Filter products"><button class="filter active" data-filter="all" aria-pressed="true">All the goodness</button><button class="filter" data-filter="cones" aria-pressed="false">Cones</button><button class="filter" data-filter="cups" aria-pressed="false">Cups</button><button class="filter" data-filter="bundles" aria-pressed="false">Sharing boxes</button></div><div class="shop-right"><label class="search-field"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="product-search" type="search" placeholder="Find a flavor…" aria-label="Search flavors"></label><select id="sort" aria-label="Sort products"><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name: A–Z</option></select></div></div>
  <div id="catalog-state" class="catalog-state" aria-live="polite"></div><div class="product-grid" id="product-grid"></div>
  <p class="catalog-note">A first taste of the Koty Cono concept. This menu, its prices and product imagery are illustrative.</p>
@@ -53,8 +63,7 @@
 
 <dialog class="modal receipt-dialog" id="receipt-dialog" aria-labelledby="receipt-title"><button class="close-button" data-close="receipt-dialog" aria-label="Close order confirmation">×</button><div id="receipt"></div></dialog>
 <dialog class="modal policy-dialog" id="policy-dialog" aria-labelledby="policy-title"><button class="close-button" data-close="policy-dialog" aria-label="Close information">×</button><div id="policy-content"></div></dialog>
-<div class="site-cone" id="site-cone" aria-hidden="true"><div class="motion-glow"></div><img id="cone-poster" src="assets/icecream-poster.png" alt=""><canvas id="hero-cone" width="640" height="960"></canvas><div class="motion-shadow"></div><div class="motion-caption"><span>KOTY CONO</span><strong>A little swirl of joy.</strong><div class="motion-progress"><i id="journey-progress"></i></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/cone-motion.js"></script><script src="store.js"></script><script src="app.js"></script>
+<script src="assets/cinematic/cinema-math.js"></script><script src="assets/cinematic/cinema-2d.js"></script><script src="store.js"></script><script src="app.js"></script><script src="cinematic.js"></script>
 </body>
 </html>
