@@ -1,0 +1,3 @@
+import worker from './worker.mjs';import assets from './private-asset-map.mjs';
+const ASSETS={async fetch(request){const pathname=new URL(request.url).pathname,key=pathname==='/'?'/index.html':pathname,asset=assets[key];if(!asset)return new Response('Not found',{status:404});if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405});const data=asset.encoding==='base64'?Uint8Array.from(atob(asset.body),c=>c.charCodeAt(0)):asset.body;return new Response(request.method==='HEAD'?null:data,{headers:{'Content-Type':asset.type}})}};
+export default{fetch(request,env,ctx){return worker.fetch(request,{...env,ASSETS},ctx)},scheduled(controller,env,ctx){return worker.scheduled(controller,env,ctx)}};

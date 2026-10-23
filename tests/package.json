@@ -1,1 +1,10 @@
-{"name":"koty-cono-verification","private":true,"scripts":{"test":"node shop-check.cjs && node scene-check.mjs"},"devDependencies":{"jsdom":"26.1.0"}}
+{
+  "name": "koty-cono-verification",
+  "private": true,
+  "scripts": {
+    "test": "node ../backend/scripts/build-selection-preview.mjs && node shop-check.cjs && node scene-check.mjs && node --test customer-data-check.cjs && node --test admin-data-check.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}

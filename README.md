@@ -48,3 +48,10 @@ Validation also includes syntax checks, asset/anchor resolution, local HTTP serv
 Existing Git-connected Vercel projects deploy main. Existing vercel.json remains unchanged: framework Other, no build step, repository-root static output. Legacy /checkout and /checkout.html routes redirect to the current storefront.
 
 Active entry points: index.html, styles.css, cinematic.css, store.js, app.js, cinematic.js, and assets/cinematic/. Earlier animation/styles remain in the repository and are not loaded by this version.
+
+
+## Private brand insights
+
+Optional customer research now uses a separate Cloudflare Worker/D1 backend and owner-only Cloudflare Access sign-in. The public shop remains a clearly labelled demo checkout: no payment or delivery is processed. Research sharing, analytics and future updates have separate opt-in controls. The owner dashboard includes a WebGL product scene, feedback, searchable research participants and CSV exports.
+
+The Vercel build publishes only the allowlisted customer-facing files to `public-site`; backend, admin, tests and documentation are not included in public website output. Cloudflare independently protects all dashboard assets and private APIs. See `docs/LIVE_DEPLOYMENT.md` and `docs/METRICS_AND_DATA.md`.

@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "koty-cono-customer-data",
+  "main": "deploy-entry.mjs",
+  "compatibility_date": "2026-10-23",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "koty-cono-customer-data",
+      "database_id": "467e520c-61c4-4630-b42a-27dcdadee542",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "STOREFRONT_ORIGINS": "https://koty-cono.vercel.app",
+    "AUTH_MODE": "access",
+    "ACCESS_TEAM_DOMAIN": "https://youssef-aioffice.cloudflareaccess.com",
+    "ACCESS_AUD": "da52ab644591abf2db8c3f94281b395180c6e2655b409176125a45db683a3219"
+  },
+  "triggers": {
+    "crons": [
+      "17 2 * * *"
+    ]
+  },
+  "observability": {
+    "enabled": false
+  },
+  "build": {
+    "command": "node scripts/build-worker-assets.mjs"
+  },
+  "preview_urls": false
+}

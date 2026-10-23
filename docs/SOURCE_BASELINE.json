@@ -1,0 +1,13 @@
+{
+  "repository": "234308-hash/Koty-Cono",
+  "branch_read": "main",
+  "remote_writes": true,
+  "cloud_collection_enabled": true,
+  "original_git_blob_shas": {
+    "index.html": "75f5887fb78b9060b34022e724b9b97340d787f8",
+    "app.js": "1f9db6d80258da7e6f0c137c7b147c96fb3f4e74",
+    "store.js": "99e4bcf8a47a97fc2ffda41674e984bfd9d34f9d",
+    "tests/package.json": "305b204b346833b0126b0241751f50f80c3716b8"
+  },
+  "activation_approved": "2026-10-23"
+}
