@@ -32,3 +32,9 @@ The owner approved activation and requested a premium 3D design with exclusive a
 - Public storefront deployment is the Git-connected build of the commit containing this file. The strict build allowlist excludes private admin/backend/test/docs source from the Vercel static output.
 
 The checkout remains demo-only; research basket values are not revenue. Collection is optional, and only the configured owner can access the dashboard and exports.
+
+## Owner session recovery fix — 23 October 2026
+
+An owner sign-in was allowed by Access at 19:15 UTC, but the application returned a raw JSON 401. The validator only read the assertion header and ignored the runtime Access identity and application cookie. The fix accepts Cloudflare-provided `ctx.access` only with the exact configured audience and owner email, or verifies the application JWT from its header/cookie with the same RSA signature, issuer, audience and lifetime checks. No Access policy, owner identity, public submission route or data record was changed.
+
+Root navigation failures now render a branded recovery page; private APIs still return JSON 401. Production session expiry offers email-session recovery rather than the development password form. Regression tests cover cookie-only requests, runtime identity mismatch, owner shell rendering, blocked private APIs and the expired-session UI. Positive completion of the owner's email flow remains for the owner to confirm; no OTP is requested by the assistant.
